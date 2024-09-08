@@ -1,14 +1,10 @@
-CodeGenerator
+# Code Generator for Mermaid Class Diagram
 PD2-HW2
-
+---
 
 Here's the bilingual README for your "Mermaid Class Diagram to Java Code Generator" project:
 
 This README provides all the essential information for your project in both English and Chinese. You can modify the repository URL as needed.
----
-
-# Code Generator for Mermaid Class Diagram
-
 
 ### Introduction
 This project is a simple code generator that converts Mermaid class diagrams into Java source code. Mermaid is a JavaScript-based diagramming and charting tool, rendering diagrams using Markdown-like syntax. This tool allows you to easily represent class relationships and their interactions, similar to UML diagrams, in a Markdown-based format.
