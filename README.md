@@ -1,168 +1,116 @@
-# CodeGenerator
-PD-2 HW2
+Mermaid Class Diagram Code Generator
+Introduction | 介紹
+This is a simple code generator that converts Mermaid class diagrams into corresponding Java source code. Mermaid is a JavaScript-based diagramming and charting tool that renders Markdown-inspired text definitions to create diagrams. This project focuses on generating Java class code from Mermaid's class diagram syntax.
 
-## Mermaid Class Diagram to Java Code Generator - README
+這是一個簡單的代碼生成器，它將 Mermaid 類圖轉換為相應的 Java 源代碼。Mermaid 是一種基於 JavaScript 的圖表工具，可以將類似 Markdown 的文本定義轉換為圖表。本項目專注於從 Mermaid 類圖語法生成 Java 類代碼。
 
-### Introduction to Mermaid (中文版)
-Mermaid 是一個基於標記語言的圖表生成工具，允許用戶使用類似 Markdown 的語法創建流程圖、序列圖、甘特圖等各類圖表。這使得開發者能夠輕鬆地在文檔中展示複雜的結構和流程，而無需使用專業的圖形軟件。Mermaid Class Diagram 是其中的一個工具，用於以結構化的方式展示類之間的關係，類似於 UML 類圖。
+Features | 特性
+Converts Mermaid class diagram syntax into Java classes
 
-本工具的目標是將 Mermaid Class Diagram 轉換為 Java 類源代碼。這是一個簡單的代碼生成器，通過 Mermaid 語法解析並輸出對應的 Java 類文件。
+Supports class attributes and methods (both getters and setters)
 
-### Mermaid Class Diagram to Java Code Generator (English version)
+Follows Java's CamelCase naming convention
 
-Mermaid is a markup-based diagramming tool that allows users to create various diagrams such as flowcharts, sequence diagrams, and Gantt charts with Markdown-like syntax. This enables developers to quickly include complex visual structures in documentation without needing specialized graphical software. The Mermaid Class Diagram is a tool within Mermaid that represents relationships between classes in a structured way, similar to UML class diagrams.
+Outputs a .java file for each class in the Mermaid diagram
 
-This tool's goal is to convert a Mermaid Class Diagram into corresponding Java source code. It serves as a simple code generator that parses Mermaid syntax and generates Java class files accordingly.
+將 Mermaid 類圖語法轉換為 Java 類
 
----
+支持類的屬性和方法（包括 getter 和 setter）
 
-## How to Use
+遵循 Java 的 CamelCase 命名規則
 
-1. **Input Format:**
+為 Mermaid 圖中的每個類生成一個 .java 文件
 
-   - The input is a Mermaid Class Diagram, where each class is defined by `class <ClassName>`, followed by its attributes and methods.
-   - Attributes and methods are defined using `:` and each class member is prefixed with `+` (for public) or `-` (for private).
-   - Attributes will have a type but no parentheses, whereas methods will have parentheses and a return type after the parentheses.
+Requirements | 系統要求
+Java 8 or above
 
-   Example of a Mermaid Class Diagram:
-   ```
-   classDiagram
-   class BankAccount {
-       -String owner
-       -int balance
-       +setOwner(String owner) void
-       +getOwner() String
-       +isEnough(int value, int balance) boolean
-   }
-   ```
+Basic knowledge of Mermaid class diagram syntax
 
-2. **Java Code Output:**
+Java 8 及以上
 
-   - The tool will generate a corresponding `.java` file for each class in the Mermaid diagram.
-   - The file name will match the class name, and the class will include private fields, constructors, getters, setters, and any other specified methods.
-   - Methods will include the correct return types and default return values for non-getter/setter methods (int returns 0, String returns "", boolean returns false).
+基本的 Mermaid 類圖語法知識
 
-   Example of the corresponding Java output:
-   ```java
-   public class BankAccount {
-       private String owner;
-       private int balance;
+Usage | 使用方法
+Step 1: Define a Mermaid Class Diagram | 步驟一：定義 Mermaid 類圖
+Write a Mermaid class diagram using the following syntax:
 
-       public void setOwner(String owner) {
-           this.owner = owner;
-       }
+使用以下語法撰寫 Mermaid 類圖：
 
-       public String getOwner() {
-           return owner;
-       }
-
-       public boolean isEnough(int value, int balance) {
-           return false;  // Default return for boolean
-       }
-   }
-   ```
-
-3. **Compile Instructions:**
-
-   - Compile the main class `CodeGenerator.java`:
-     ```
-     javac CodeGenerator.java
-     ```
-
-   - Run the tool by passing the input file name:
-     ```
-     java CodeGenerator <input-file>
-     ```
-
-   - The tool will generate `.java` files for each class in the diagram.
-
-4. **File Structure:**
-
-   - Each class will have a file with the same name as the class.
-   - Classes will have private attributes and methods defined in the diagram.
-   - Getter and Setter methods will be automatically generated for each class attribute.
-
----
-
-## Input File Example (輸入文件範例)
-
-```mermaid
+mermaid
+複製程式碼
 classDiagram
+    class Person {
+        -int age
+        -String name
+        +setName(String name) void
+        +getName() String
+    }
+Step 2: Run the Code Generator | 步驟二：運行代碼生成器
+Run the Java program and provide the input file that contains the Mermaid class diagram:
+
+運行 Java 程式，並提供包含 Mermaid 類圖的輸入文件：
+
+bash
+複製程式碼
+java CodeGenerator tc1
+Step 3: Generated Java Code | 步驟三：生成的 Java 代碼
+The program will output a .java file for each class defined in the Mermaid diagram. For example, the above Mermaid diagram will generate a Person.java file containing:
+
+程式將為 Mermaid 圖中定義的每個類生成一個 .java 文件。例如，上面的 Mermaid 圖將生成一個 Person.java 文件，內容如下：
+
+java
+複製程式碼
 class Person {
-    -int age
-    -String name
-    +setAge(int age) void
-    +getName() String
-}
-class Employee {
-    -String company
-    +setCompany(String company) void
-    +getCompany() String
-}
-class Manager {
-    -String department
-    +setDepartment(String department) void
-    +getDepartment() String
-}
-```
-
-## Output Example (輸出範例)
-
-For the above input, the tool will generate three files: `Person.java`, `Employee.java`, and `Manager.java`.
-
-### Person.java:
-```java
-public class Person {
     private int age;
     private String name;
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName() {
         return name;
     }
 }
-```
+Input Syntax | 輸入語法
+Each line in the Mermaid class diagram corresponds to a string.
 
-### Employee.java:
-```java
-public class Employee {
-    private String company;
+The diagram starts with classDiagram and contains class definitions, attributes, and methods.
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
+Class members are distinguished by their syntax, where methods contain parentheses () and attributes do not.
 
-    public String getCompany() {
-        return company;
-    }
-}
-```
+Supported access modifiers are + for public and - for private.
 
-### Manager.java:
-```java
-public class Manager {
-    private String department;
+Mermaid 類圖中的每一行對應於一個字符串。
 
-    public void setDepartment(String department) {
-        this.department = department;
-    }
+圖表以 classDiagram 開頭，包含類定義、屬性和方法。
 
-    public String getDepartment() {
-        return department;
-    }
-}
-```
+類的成員根據語法區分，方法帶有括號 ()，屬性則沒有。
 
----
+支持的訪問修飾符為 + 表示 public，- 表示 private。
 
-## Notes
+Output | 輸出
+A .java file is generated for each class in the Mermaid diagram.
 
-- All attributes in the generated Java class are private, and the methods are public.
-- The tool automatically handles getter and setter generation based on method names starting with "get" and "set".
-- Default return values are used for non-getter/setter methods.
+Each class contains the defined attributes and methods, following the specified syntax and indentation rules.
 
-This tool simplifies Mermaid class diagrams into structured Java code, ideal for quick prototyping or generating boilerplate code.
+For non-getter and non-setter methods, default return values (0 for int, "" for String, false for boolean) are provided when necessary.
 
+每個 Mermaid 類圖中的類都會生成一個 .java 文件。
+
+每個類包含定義的屬性和方法，遵循指定的語法和縮排規則。
+
+對於非 getter 和 setter 的方法，當需要時提供默認返回值（int 為 0，String 為 ""，boolean 為 false）。
+
+Notes | 注意事項
+Only one argument for the test case file name is accepted.
+
+Make sure to follow the CamelCase naming convention when generating code.
+
+Extra spaces in the Mermaid input should be ignored.
+
+測試用例文件名只接受一個參數。
+
+生成代碼時請確保遵循 CamelCase 命名規則。
+
+Mermaid 輸入中的多餘空格應忽略。
