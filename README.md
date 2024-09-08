@@ -1,5 +1,8 @@
-Here's the bilingual README for your "Mermaid Class Diagram to Java Code Generator" project:
+CodeGenerator
 PD2-HW2
+
+
+Here's the bilingual README for your "Mermaid Class Diagram to Java Code Generator" project:
 
 This README provides all the essential information for your project in both English and Chinese. You can modify the repository URL as needed.
 ---
